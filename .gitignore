@@ -1,0 +1,6 @@
+# no videos
+*.MOV
+# none of this
+__pycache__
+# protect your private information
+info.py
