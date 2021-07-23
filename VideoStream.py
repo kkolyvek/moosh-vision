@@ -30,7 +30,8 @@ class VideoStream:
         # self.fpsOpenCV = self.source.get(cv2.CAP_PROP_FPS)
         # print(self.fpsOpenCV)
         self.ms = round(1 / self.fps * 1000)
-        self.bc = [1, 0]  # brightness/contrast values [alpha = 1, beta = 0]
+        # brightness/contrast values [alpha = 1, beta = 0]
+        self.bc = [float(1), float(0)]
 
         # THREADS AND MISC.
         self.inputThread = None
@@ -66,11 +67,15 @@ class VideoStream:
             # Take frame from the edited stack to display at specified rate
             frame = self.editStack.get()
 
-            # frame = brightnessContrast(frame, self.alpha, self.beta)
             cv2.putText(frame, "InputStack Size: {}".format(self.inputStack.qsize()),
                         (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1)
             cv2.putText(frame, "EditStack Size: {}".format(self.editStack.qsize()),
                         (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1)
+
+            cv2.putText(frame, "Alpha: {:.2f}".format(
+                bc[0]), (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1)
+            cv2.putText(frame, "Beta: {}".format(
+                bc[1]), (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1)
 
             cv2.imshow(self.windowName, frame)
 
