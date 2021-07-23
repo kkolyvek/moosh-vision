@@ -5,7 +5,7 @@ import threading
 from queue import Queue
 
 # IMPORT LOCAL FILES
-from processImage import brightnessContrast
+from processImage import brightnessContrast, MooshEdits
 
 """
 Video stream from drone stream seems to be choppy and unstable - could be due ot OpenCV playback or drone connection or whatever. To fix:
@@ -57,6 +57,7 @@ class VideoStream:
 
             # Do some frame edits here
             frame = brightnessContrast(frame, bc[0], bc[1])
+            frame = MooshEdits(frame)
 
             editStack.put(frame)
 
