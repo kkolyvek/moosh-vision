@@ -55,6 +55,12 @@ Once all necessary dependencies are downloaded and installed, the program can be
   </p>
 
 4. Navigate to this repository and run `python main.py`.
+5. Real-time processes are invoked using the following key commands:
+   - `q`: stops and quits the stream object
+   - `o`: decreases contrast
+   - `p`: increases contrast
+   - `k`: decreases brightness
+   - `l`: increases brightness
 
 ## Bugs
 
