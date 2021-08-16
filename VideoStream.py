@@ -77,12 +77,19 @@ class VideoStream:
             cv2.putText(frame, "Beta: {}".format(
                 bc[1]), (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1)
 
+            cv2.putText(frame, "Playback FPS: {}".format(
+                self.fps), (10, 130), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1)
+
             cv2.imshow(self.windowName, frame)
 
             # Display window to FPS of video (in whole integer ms)
             key = cv2.waitKey(self.ms)
+
+            # QUIT PROGRAM
             if key == ord("q"):
                 self.stop()
+
+            # CHANGE BRIGHTNESS CONTRAST
             if key == ord("o"):
                 bc[0] -= 0.2
                 # print(self.alpha)
@@ -96,6 +103,14 @@ class VideoStream:
                 bc[1] += 10
                 # print(self.beta)
 
+            # CHANGE PLAYBACK SPEED
+            if key == ord("m"):
+                self.fps += 1
+                self.ms = round(1 / self.fps * 1000)
+            if key == ord("n"):
+                self.fps -= 1
+                self.ms = round(1 / self.fps * 1000)
+
     def start(self):
         self.is_streaming = True
 
@@ -106,7 +121,10 @@ class VideoStream:
             target=self.editFrame, args=(self.inputStack, self.editStack, self.bc))
 
         # set up window
-        cv2.namedWindow(self.windowName, cv2.WINDOW_AUTOSIZE)
+        # cv2.namedWindow(self.windowName, cv2.WINDOW_AUTOSIZE)
+        cv2.namedWindow(self.windowName, cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty(
+            self.windowName, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
         # give each worker thread a headstart to fill stacks
         self.inputThread.start()

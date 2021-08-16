@@ -38,9 +38,9 @@ Installing NGINX is more involved.
 
    - Navigate to your nginx folder using `cd /nginx`
    - `start nginx` <- starts server
-   - `nginx -s stop` <- fast shutdown
-   - `nginx -s quit` <- graceful quit (preferred)
-   - `nginx -s reload` <- reloads server
+   - `.\nginx -s stop` <- fast shutdown
+   - `.\nginx -s quit` <- graceful quit (preferred)
+   - `.\nginx -s reload` <- reloads server
 
 ## Usage
 
@@ -61,6 +61,10 @@ Once all necessary dependencies are downloaded and installed, the program can be
    - `p`: increases contrast
    - `k`: decreases brightness
    - `l`: increases brightness
+   - `n`: decreases playback speed
+   - `m`: increases playback speed
+
+Notes:
 
 ## Bugs
 
