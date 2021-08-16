@@ -23,8 +23,9 @@ def main():
     # Addresses
     rtmp = 'rtmp://' + info.IP + ':1935/live/'
     webcam = 0  # for process testing
+    video = "DJI_0004.MOV"
 
-    strm = VideoStream(rtmp, 38)
+    strm = VideoStream(rtmp, 35)
     strm.start()
 
 
